@@ -65,7 +65,7 @@ const displayAllPost = (data) => {
                                 </p>
                             </div>
                             <div>
-                                <button class="btn rounded-full bg-[#10B981]" onclick ='displayTitle(${JSON.stringify(title)},${view_count})'>
+                                <button class="btn rounded-full bg-[#10B981]" onclick ='displayTitle(${JSON.stringify(description)},${view_count})'>
                                 <i class="fa-solid fa-envelope-open text-white"></i>
                                 </button>
                             </div>
@@ -81,7 +81,7 @@ const displayAllPost = (data) => {
 }
 
 let count = 0;
-const displayTitle = (title, views) => {
+const displayTitle = (description, views) => {
     count++;
     const titleCount = document.getElementById('title-count');
     titleCount.innerText = count;
@@ -89,7 +89,7 @@ const displayTitle = (title, views) => {
     titleParentDiv.innerHTML += 
     `
                       <div class="flex justify-between items-center p-4 bg-white rounded-2xl">
-                            <p class="text-lg lg:text-xl font-semibold text-[#12132D]">${title} </p>
+                            <p class="text-lg lg:text-xl font-semibold text-[#12132D]">${description} </p>
                             <p class="text-sm lg:text-base font-normal text-[#12132D]/[0.6] space-x-2 flex">
                                 <span><i class="fa-regular fa-eye"></i></span><span>${views} </span>
                             </p>
