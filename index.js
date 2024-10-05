@@ -11,6 +11,7 @@ const allPost = async (searchText) => {
 allPost();
 
 
+
 const handleSearch = () => {
     const searchText = document.getElementById('search-input-field').value;
     const textSmall = searchText.toLowerCase();
@@ -86,8 +87,8 @@ const displayTitle = (description, views) => {
     const titleCount = document.getElementById('title-count');
     titleCount.innerText = count;
     const titleParentDiv = document.getElementById('title-parent-div');
-    titleParentDiv.innerHTML += 
-    `
+    titleParentDiv.innerHTML +=
+        `
                       <div class="flex justify-between items-center p-4 bg-white rounded-2xl">
                             <p class="text-lg lg:text-xl font-semibold text-[#12132D]">${description} </p>
                             <p class="text-sm lg:text-base font-normal text-[#12132D]/[0.6] space-x-2 flex">
@@ -95,8 +96,53 @@ const displayTitle = (description, views) => {
                             </p>
                         </div>
     `
- console.log(count);
- 
+
 }
+
+
+
+
+const latestPost = async () => {
+    const res = await fetch(`https://openapi.programming-hero.com/api/retro-forum/latest-posts`)
+    const data = await res.json()
+    displayLatestPost(data);
+}
+latestPost();
+
+
+
+const displayLatestPost = (data) => {
+    const latestPostParentDiv = document.getElementById('latest-post-parent');
+    data.forEach((item) => {
+        const { cover_image, profile_image, title, description, author } = item;
+        const { name, designation, posted_date } = author;
+        latestPostParentDiv.innerHTML +=
+            `
+         <div class="p-6 rounded-3xl border border-solid border-[#12132D26]/[0.15]">
+                <div class="mb-6"><img src="${cover_image} " class="w-full rounded-3xl" alt=""></div>
+                <div class="text-sm lg:text-base font-normal text-[#12132D]/[0.6] mb-4 space-x-3"><span><i
+                            class="fa-regular fa-calendar"></i></span><span>${posted_date ? posted_date : `Not found`} </span></div>
+                <h1 class="text-base lg:text-lg font-extrabold text-[#12132D] mb-3">${title} </h1>
+                <p class="text-sm lg:text-base font-normal text-[#12132D]/[0.6] mb-4">${description} </p>
+                <div class="flex space-x-4">
+                    <div class="w-[44px] h-[44px]"><img src="${profile_image}" class="w-full rounded-full" alt="">
+                    </div>
+                    <div class="text-sm lg:text-base font-bold text-[#12132D] mb-1">
+                        <h1>${name} </h1>
+                        <p class="text-xs lg:text-sm font-normal text-[#12132D]/[0.6]">${designation ? designation : `Unknown`} </p>
+                    </div>
+                </div>
+            </div>
+        `
+        console.log(posted_date);
+        
+
+    })
+
+
+
+}
+
+
 
 
