@@ -17,16 +17,20 @@ const handleSearch = () => {
     if (textSmall === 'coding' || textSmall === 'music' || textSmall === 'comedy') {
         allPost(textSmall);
         document.getElementById('search-input-field').value = '';
-        
+
     }
-    else{
+    else {
         alert('There are just coding , comedy and music type are available')
     }
-    
-    
-    
+
+
+
 
 }
+
+
+
+
 
 const displayAllPost = (data) => {
     const discussParentCard = document.getElementById('discuss-card-parent');
@@ -61,8 +65,9 @@ const displayAllPost = (data) => {
                                 </p>
                             </div>
                             <div>
-                                <button class="btn rounded-full bg-[#10B981]"><i
-                                        class="fa-solid fa-envelope-open text-white"></i></button>
+                                <button class="btn rounded-full bg-[#10B981]" onclick ='displayTitle(${JSON.stringify(title)},${view_count})'>
+                                <i class="fa-solid fa-envelope-open text-white"></i>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -74,4 +79,24 @@ const displayAllPost = (data) => {
 
 
 }
+
+let count = 0;
+const displayTitle = (title, views) => {
+    count++;
+    const titleCount = document.getElementById('title-count');
+    titleCount.innerText = count;
+    const titleParentDiv = document.getElementById('title-parent-div');
+    titleParentDiv.innerHTML += 
+    `
+                      <div class="flex justify-between items-center p-4 bg-white rounded-2xl">
+                            <p class="text-lg lg:text-xl font-semibold text-[#12132D]">${title} </p>
+                            <p class="text-sm lg:text-base font-normal text-[#12132D]/[0.6] space-x-2 flex">
+                                <span><i class="fa-regular fa-eye"></i></span><span>${views} </span>
+                            </p>
+                        </div>
+    `
+ console.log(count);
+ 
+}
+
 
